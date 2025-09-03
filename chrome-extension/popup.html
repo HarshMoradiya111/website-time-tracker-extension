@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 350px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .stats {
+      margin-bottom: 20px;
+    }
+    
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #f5f5f5;
+      border-radius: 5px;
+    }
+    
+    .productive {
+      border-left: 4px solid #4CAF50;
+    }
+    
+    .unproductive {
+      border-left: 4px solid #f44336;
+    }
+    
+    .neutral {
+      border-left: 4px solid #9E9E9E;
+    }
+    
+    .time {
+      font-weight: bold;
+    }
+    
+    .button {
+      width: 100%;
+      padding: 10px;
+      background: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    
+    .button:hover {
+      background: #1976D2;
+    }
+    
+    .summary {
+      text-align: center;
+      margin-top: 20px;
+      padding: 15px;
+      background: #e3f2fd;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>Productivity Tracker</h2>
+  </div>
+  
+  <div class="summary">
+    <div>Today's Summary</div>
+    <div id="productive-time">Productive: 0h 0m</div>
+    <div id="unproductive-time">Unproductive: 0h 0m</div>
+    <div id="productivity-score">Score: 0%</div>
+  </div>
+  
+  <div class="stats">
+    <h3>Top Websites Today</h3>
+    <div id="website-list"></div>
+  </div>
+  
+  <button class="button" id="view-dashboard">View Full Dashboard</button>
+  <button class="button" id="clear-data">Clear Today's Data</button>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
