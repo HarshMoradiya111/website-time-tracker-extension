@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 const Login = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -13,15 +12,24 @@ const Login = ({ onLogin }) => {
     setLoading(true);
     setError('');
 
-    try {
-      const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
-      const response = await axios.post(endpoint, { email, password });
-      onLogin(response.data.token);
-    } catch (error) {
-      setError(error.response?.data?.message || 'An error occurred');
-    } finally {
-      setLoading(false);
-    }
+    // Simulate API call delay
+    setTimeout(() => {
+      try {
+        // Mock authentication - accept any email/password for demo
+        if (email && password) {
+          // Generate a mock token
+          const mockToken = 'demo-token-' + Date.now();
+          localStorage.setItem('authToken', mockToken);
+          onLogin(mockToken);
+        } else {
+          setError('Please enter both email and password');
+        }
+      } catch (error) {
+        setError('An error occurred during authentication');
+      } finally {
+        setLoading(false);
+      }
+    }, 1000);
   };
 
   return (
@@ -34,6 +42,11 @@ const Login = ({ onLogin }) => {
           <p className="mt-2 text-center text-sm text-gray-600">
             Productivity Tracker Dashboard
           </p>
+          <div className="mt-4 p-4 bg-blue-100 border border-blue-400 text-blue-700 rounded">
+            <p className="text-sm">
+              <strong>Demo Mode:</strong> Enter any email and password to access the dashboard.
+            </p>
+          </div>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && (
@@ -47,7 +60,7 @@ const Login = ({ onLogin }) => {
                 type="email"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                placeholder="Email address (demo@example.com)"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -57,7 +70,7 @@ const Login = ({ onLogin }) => {
                 type="password"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
+                placeholder="Password (any password)"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
