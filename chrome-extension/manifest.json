@@ -26,7 +26,7 @@
     "default_title": "Productivity Tracker"
   },
   "icons": {
-    "16": "/images/Icon.jpg",
+    "16": "icon16.png",
     "48": "icon48.png",
     "128": "icon128.png"
   }
